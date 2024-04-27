@@ -1,0 +1,7 @@
+GET http://localhost:4000/student-api/test-student
+
+
+###
+
+GET http://localhost:4000/coord-api/test-coord
+
