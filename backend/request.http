@@ -1,7 +1,25 @@
-GET http://localhost:4000/student-api/test-student
+POST http://localhost:4000/student-api/login
+Content-Type: application/json
+
+{
+    "email": "test@gmail.com",
+    "password": "123456"
+}
+
+###
+
+POST http://localhost:4000/coord-api/login
+Content-Type: application/json
+
+{
+    "email": "test@gmail.com",
+    "password": "123456"
+}
+
+
 
 
 ###
 
-GET http://localhost:4000/coord-api/test-coord
-
+GET http://localhost:4000/student-api/students
+###

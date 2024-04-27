@@ -1,9 +1,17 @@
 const exp = require('express');
 const coordApp = exp.Router();
 
-coordApp.get('/test-coord', (req, res) => {
-    res.send({message: "Testing Coord API"});
+//Get coordinator details
+let coordCollection;
+coordApp.use((req, res, next) => {
+    coordCollection = req.app.get('coordCollection');
+    next();
 })
+
+//coordinator login
+
+
+//get students list
 
 
 

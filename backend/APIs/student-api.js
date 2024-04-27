@@ -1,9 +1,15 @@
 const express = require('express');
 const studentApp = express.Router();
 
-studentApp.get('/test-student', (req, res) => {
-    res.send({message:'Testing student API'});
+//get student collection
+let studentCollection;
+studentApp.use((req, res, next) => {
+    studentCollection = req.app.get('studentCollection');
+    next();
 })
+
+//student login route
+
 
 
 
