@@ -3,6 +3,8 @@ const adminApp = exp.Router();
 const expressAsyncHandler = require('express-async-handler');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const passGen = require('../PasswordGen'); // password generator function
+const mailer = require('../EmailSender'); // mailer function - this accepts the email and password of the student and sends the mail
 require('dotenv').config();
 
 let studentCollection, coordCollection, adminCollection;
@@ -39,11 +41,12 @@ adminApp.post('/student',expressAsyncHandler(async(req,res)=>{
     //If student does not exist, insert student into database
     if(dbStudent===null){
         //Hash the password and replace the password field with the hashed password
-        //Feature to implement: generate password and mail it to the student
-        let hashedPwd = await bcryptjs.hash(student.password,8);
+        let password = passGen(); //generates a random password
+        mailer(student.email,password); //sends the mail with new password to the student
+        let hashedPwd = await bcryptjs.hash(password,8);
         student.password = hashedPwd;
         await studentCollection.insertOne(student);
-        res.send({message:'Student Registered'})
+        res.send({message:'Student registered and mail sent'})
     }
     else{
         res.send({message:'Student already exists'})
