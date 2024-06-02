@@ -30,20 +30,42 @@ POST http://localhost:4000/admin-api/student
 Content-Type: application/json
 
 {
-    "name": "Chinna Kodi",
-    "email": "srinithadevaraneni21@gmail.com",
-    "rollno": "22071A1220",
+    "name": "Vashta",
+    "email": "avvarma31@gmail.com",
+    "rollno": "22071A1201",
     "phone": "1234567890",
-    "gender": "female",
-    "dob": "2000-01-01",
+    "gender": "male",
+    "dob": "2004-10-21",
     "address": "test address",
     "course": "IT",
-    "section": "test section",
+    "section": "A",
     "year": "2022",
-    "caste": "test caste",
-    "religion": "Christian",
-    "parentName": "test parent name",
+    "caste": "Peraka",
+    "religion": "Muslim",
+    "parentName": "Allam Nagaraju",
     "parentPhone": "1234567890"
+}
+
+### student update
+
+PUT http://localhost:4000/student-api/update
+Content-Type: application/json
+
+{
+    "name": "Vashta",
+    "email": "avvarma31@gmail.com",
+    "rollno": "22071A1201",
+    "phone": "637382622821",
+    "gender": "male",
+    "dob": "2004-10-21",
+    "address": "Ameerpet",
+    "course": "IT",
+    "section": "A",
+    "year": "2022",
+    "caste": "Peraka",
+    "religion": "Muslim",
+    "parentName": "Allam Nagaraju",
+    "parentPhone": "0987654321"
 }
 
 ### coordinator registration through admin api
@@ -52,12 +74,31 @@ POST http://localhost:4000/admin-api/coord
 Content-Type: application/json
 
 {
-    "name": "test",
-    "email": "test2@gmail.com",
+    "name": "abhinav",
+    "email": "abhinavsai.janipireddy@gmail.com",
+    "rollno": "22071A1227",
+    "phone": "1234567890",
+    "gender": "male",
+    "dob": "2004-05-25",
+    "address": "test address",
+    "course": "test course",
+    "yearOfJoin": "2020",
+    "designation": "test designation",
+    "qualification": "test qualification"
+}
+
+### coordinator update
+
+PUT http://localhost:4000/coord-api/update
+Content-Type: application/json
+
+{
+    "name": "srinitha",
+    "email": "srinithadevaraneni21@gmail.com",
     "rollno": "22071A1227",
     "password": "123456",
     "phone": "1234567890",
-    "gender": "male",
+    "gender": "female",
     "dob": "2000-01-01",
     "address": "test address",
     "course": "test course",
@@ -71,5 +112,29 @@ GET http://localhost:4000/admin-api/student/22071A1227
 
 ### search for a coordinator by admin
 GET http://localhost:4000/admin-api/coord/22071A1227
+
+###
+
+POST http://localhost:4000/coord-api/announce
+Content-Type: application/json
+
+{
+    "title": "Assignement",
+    "content": "Please complete it by this week",
+    "date": "{{$datetime iso8601}}",
+    "creator":"MS. saraswathi"
+}
+
+###
+
+GET http://localhost:4000/student-api/announce
+
+###
+
+GET http://localhost:4000/admin-api/coords
+
+###
+
+GET http://localhost:4000/admin-api/students
 
 ###

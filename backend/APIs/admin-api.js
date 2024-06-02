@@ -12,6 +12,7 @@ adminApp.use((req,res,next)=>{
     studentCollection = req.app.get('studentCollection');
     coordCollection = req.app.get('coordCollection');
     adminCollection = req.app.get('adminCollection');
+    announcementCollection = req.app.get('announcementCollection');
     next();
 })
 
@@ -58,10 +59,12 @@ adminApp.post('/coord',expressAsyncHandler(async(req,res)=>{
     let coordinator = req.body;
     let dbCoordinator = await coordCollection.findOne({email:coordinator.email});
     if(dbCoordinator===null){
-        let hashedPwd = await bcryptjs.hash(coordinator.password,8);
+        let password = passGen(); //generates a random password
+        mailer(coordinator.email,password);
+        let hashedPwd = await bcryptjs.hash(password,8);
         coordinator.password = hashedPwd;
         await coordCollection.insertOne(coordinator);
-        res.send({message:'Coordinator Registered'})
+        res.send({message:'Coordinator Registered and mail sent'})
     }
     else{
         res.send({message:'Coordinator already exists'})
@@ -92,5 +95,29 @@ adminApp.get('/coord/:rollno',expressAsyncHandler(async(req,res)=>{
     }
 }))
 
+//add announcement
+adminApp.post('/announce',expressAsyncHandler(async(req,res)=>{
+    let body = req.body;
+    await announcementCollection.insertOne(body);
+    res.send({message:'Announcement added'})
+}))
+
+//view announcements
+adminApp.get('/announce',expressAsyncHandler(async(req,res)=>{
+    let dbAnnouncements = await announcementCollection.find({}).toArray();
+    res.send({message:'Announcements found',payload:dbAnnouncements})
+}))
+
+//get all students
+adminApp.get('/students',expressAsyncHandler(async(req,res)=>{
+    let dbStudents = await studentCollection.find({}).toArray();
+    res.send({message:'Students found',payload:dbStudents})
+}))
+
+//get all coordinators
+adminApp.get('/coords',expressAsyncHandler(async(req,res)=>{
+    let dbCoordinators = await coordCollection.find({}).toArray();
+    res.send({message:'Coordinators found',payload:dbCoordinators})
+}))
 
 module.exports = adminApp;

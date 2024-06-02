@@ -1,6 +1,10 @@
 const exp = require('express')
 const app = exp();
 require('dotenv').config();
+const path = require('path');
+
+//Provide the react build to the server
+app.use(exp.static(path.join(__dirname,'../frontend/build')));
 
 //To parse the body of req
 app.use(exp.json());
@@ -22,10 +26,12 @@ mongoClint.connect(process.env.URL)
     const coordCollection = db.collection('coordCollection');
     const studentCollection = db.collection('studentCollection');
     const adminCollection = db.collection('adminCollection');
+    const announcementCollection = db.collection('announcementCollection');
     //Setting collection object to app to make it available to other APIs
     app.set('coordCollection',coordCollection);
     app.set('studentCollection',studentCollection);
     app.set('adminCollection',adminCollection);
+    app.set('announcementCollection',announcementCollection);
     console.log('Connected to db');
 })
 .catch(err=>{
@@ -40,10 +46,26 @@ app.use('/student-api',studentApp);
 //If path is admin-api then send request to adminApp
 app.use('/admin-api',adminApp);
 
+//To prevent refresh
+app.use((req,res,next)=>{
+    res.sendFile(path.join(__dirname,'../frontend/build/index.html'));
+})
+
+//Error handler
 app.use((err, req, res, next)=>{
     res.send({message:"Error",payload:err.message});
 })
 
+//Assigning port to the server
 app.listen(process.env.PORT,()=>{
     console.log('server is running...')
 })
+
+
+// features to implement:
+// implement forgot password - forgot password and otp input components
+// create class with class id, teacher list, subjects and student list
+// make protected routes
+// connect frontend and backend
+// implement middleware to prevent refresh
+// when redirecting from register to login, credentials should be filled automatically

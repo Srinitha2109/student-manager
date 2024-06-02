@@ -9,6 +9,7 @@ require('dotenv').config();
 let coordCollection;
 coordApp.use((req, res, next) => {
     coordCollection = req.app.get('coordCollection');
+    announcementCollection = req.app.get('announcementCollection');
     next();
 })
 
@@ -35,5 +36,27 @@ coordApp.post('/login',expressAsyncHandler(async(req,res)=>{
 //get students list
 
 
+//modify coord details
+coordApp.put('/update',expressAsyncHandler(async(req,res)=>{
+    let newCoord = req.body;
+    let oldCoord = await coordCollection.findOne({email:newCoord.email});
+    newCoord.password = oldCoord.password;
+    let result = await coordCollection.updateOne({email: newCoord.email}, {$set: newCoord});
+    console.log(result);
+    res.send({message: "Coordinator details updated"});
+}))
+
+//add announcement
+coordApp.post('/announce',expressAsyncHandler(async(req,res)=>{
+    let body = req.body;
+    await announcementCollection.insertOne(body);
+    res.send({message:'Announcement added'})
+}))
+
+//view announcements
+coordApp.get('/announce',expressAsyncHandler(async(req,res)=>{
+    let dbAnnouncements = await announcementCollection.find({}).toArray();
+    res.send({message:'Announcements found',payload:dbAnnouncements})
+}))
 
 module.exports = coordApp;
