@@ -16,6 +16,24 @@ adminApp.use((req,res,next)=>{
     next();
 })
 
+//admin registration -- just for registration, no frontend 
+adminApp.post('/admin',expressAsyncHandler(async(req,res)=>{
+    let admin = req.body;
+    let dbAdmin = await adminCollection.findOne({email:admin.email});
+    if(dbAdmin===null){
+        let password = passGen();
+        mailer(admin.email,password); //sends the mail with new password to the student
+        //let hashedPwd = await bcryptjs.hash(password,8);
+        admin.password = password;
+        await adminCollection.insertOne(admin);
+        res.send({message:'Admin registered and mail sent'})
+    }
+    else{
+        res.send({message:'Admin already exists'})
+    }
+}))
+
+
 //admin login
 adminApp.post('/login',expressAsyncHandler(async(req,res)=>{
     let admin = req.body;
@@ -116,7 +134,7 @@ adminApp.get('/students',expressAsyncHandler(async(req,res)=>{
 
 //get all coordinators
 adminApp.get('/coords',expressAsyncHandler(async(req,res)=>{
-    let dbCoordinators = await coordCollection.find({}).toArray();
+    let dbCoordinators = await coordCollection.find().toArray();
     res.send({message:'Coordinators found',payload:dbCoordinators})
 }))
 

@@ -1,0 +1,20 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.img{
+    border-radius: 50%;
+    width: 12vw;
+    margin-left: 30px;
+    margin-top: 30px;
+    border: 1px solid black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* Defines the 1:2 ratio */
+    gap: 10px; /* Optional: adds space between the columns */
+  }

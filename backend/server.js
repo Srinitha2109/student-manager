@@ -66,6 +66,13 @@ app.listen(process.env.PORT,()=>{
 // implement forgot password - forgot password and otp input components
 // create class with class id, teacher list, subjects and student list
 // make protected routes
-// connect frontend and backend
-// implement middleware to prevent refresh
-// when redirecting from register to login, credentials should be filled automatically
+// connect frontend and backend  -- done
+// implement middleware to prevent refresh -- done
+
+//teacher password - tfrN0VqQ5/
+//student password - /Oh?fWnXII
+//admin password - wyvz7#hf!y
+
+//Future improvements:
+// Add photo to profile
+// Search bar to search for students and teachers

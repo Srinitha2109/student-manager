@@ -25,13 +25,22 @@ Content-Type: application/json
     "password": "123456"
 }
 
+### admin registration
+POST http://localhost:4000/admin-api/admin
+Content-Type: application/json
+
+{
+    "name": "abhinav",
+    "email": "abhinavsai.janipireddy@gmail.com"
+}
+
 ### student registration through admin api
 POST http://localhost:4000/admin-api/student
 Content-Type: application/json
 
 {
-    "name": "Vashta",
-    "email": "avvarma31@gmail.com",
+    "name": "Abhinav",
+    "email": "abhinavsai.janipireddy@gmail.com",
     "rollno": "22071A1201",
     "phone": "1234567890",
     "gender": "male",
