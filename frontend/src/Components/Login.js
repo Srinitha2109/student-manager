@@ -23,7 +23,7 @@ function Login() {
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
-  };
+  };
 
   const handleSubmitButton = (data) => {
     console.log(data);

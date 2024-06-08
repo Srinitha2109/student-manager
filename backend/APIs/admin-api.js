@@ -17,7 +17,7 @@ adminApp.use((req,res,next)=>{
     next();
 })
 
-//admin registration -- just for registration, no frontend 
+//admin registration
 adminApp.post('/admin',expressAsyncHandler(async(req,res)=>{
     let admin = req.body;
     let dbAdmin = await adminCollection.findOne({email:admin.email});

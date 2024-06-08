@@ -23,7 +23,7 @@ function AddAnnouncements() {
             <label htmlFor=" title" className='form-label fs-3 mb-1'>Title</label>
             <input type='text' id="title" className='form-control' {...register("title")}></input>
           </div>
-        
+          
           <div >
             <label htmlFor='content' className='form-label fs-3'>Content</label>
             <textarea className='form-control mb-3' id='content' rows="3" {...register("content")}></textarea>

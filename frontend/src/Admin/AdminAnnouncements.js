@@ -14,7 +14,6 @@ function AdminAnnouncements() {
             <div className='mt-4'>
               <ViewAnnouncements/>
             </div>
-    
           </div>
         </>
   )
