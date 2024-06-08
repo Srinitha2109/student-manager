@@ -18,10 +18,13 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import PersonIcon from '@mui/icons-material/Person';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import SpeedIcon from '@mui/icons-material/Speed';
-import SubjectIcon from '@mui/icons-material/Subject';
-import CreditScoreIcon from '@mui/icons-material/CreditScore';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import SchoolIcon from '@mui/icons-material/School';
+import LogoutIcon from '@mui/icons-material/Logout';
+import GroupsIcon from '@mui/icons-material/Groups';
+import ChatIcon from '@mui/icons-material/Chat';
+import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import { Link } from 'react-router-dom'; // Import Link from React Router
 
 const drawerWidth = 240;
@@ -51,8 +54,9 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-end',
-  padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
+  padding :0,
+  margin:0,
 }));
 
 const AppBar = styled(MuiAppBar, {
@@ -154,6 +158,54 @@ function AdminNav() {
               <ListItemText primary="Profile" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
+
+          <ListItem disablePadding sx={{ display: 'block' }}>
+            <ListItemButton
+              component={Link}
+              to="new-coord"
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center',
+                }}
+              >
+               <PersonAddAltIcon />
+              </ListItemIcon>
+              <ListItemText primary="Add Coordinator" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+
+
+          <ListItem disablePadding sx={{ display: 'block' }}>
+            <ListItemButton
+              component={Link}
+              to="new-student"
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center',
+                }}
+              >
+               <PersonAddAlt1Icon />
+              </ListItemIcon>
+              <ListItemText primary="Add Student" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+
           
           <ListItem disablePadding sx={{ display: 'block' }}>
             <ListItemButton
@@ -172,7 +224,7 @@ function AdminNav() {
                   justifyContent: 'center',
                 }}
               >
-               <AssignmentIcon />
+               <GroupsIcon />
               </ListItemIcon>
               <ListItemText primary="Coordinators" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
@@ -195,11 +247,35 @@ function AdminNav() {
                   justifyContent: 'center',
                 }}
               >
-               <AssignmentIcon />
+               <SchoolIcon />
               </ListItemIcon>
               <ListItemText primary="Students" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
+
+          <ListItem disablePadding sx={{ display: 'block' }}>
+            <ListItemButton
+              component={Link}
+              to="create-class"
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center',
+                }}
+              >
+               <LibraryBooksIcon/>
+              </ListItemIcon>
+              <ListItemText primary="Create Class" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+
 
           <ListItem disablePadding sx={{ display: 'block' }}>
             <ListItemButton
@@ -218,11 +294,13 @@ function AdminNav() {
                   justifyContent: 'center',
                 }}
               >
-               <AssignmentIcon />
+               <LibraryBooksIcon/>
               </ListItemIcon>
               <ListItemText primary="Courses" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
+
+          
 
 
           <ListItem disablePadding sx={{ display: 'block' }}>
@@ -242,7 +320,7 @@ function AdminNav() {
                   justifyContent: 'center',
                 }}
               >
-               <AssignmentIcon />
+               <ChatIcon />
               </ListItemIcon>
               <ListItemText primary="Announcements" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
@@ -269,7 +347,7 @@ function AdminNav() {
                   justifyContent: 'center',
                 }}
               >
-               <AssignmentIcon />
+               <LogoutIcon />
               </ListItemIcon>
               <ListItemText primary="Log Out" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
@@ -278,7 +356,7 @@ function AdminNav() {
         </List>
         <Divider />
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, padding: '0 !important',m:0}}>
         <DrawerHeader />
       </Box>
     </Box>

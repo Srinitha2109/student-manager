@@ -61,8 +61,8 @@ PUT http://localhost:4000/student-api/update
 Content-Type: application/json
 
 {
-    "name": "Vashta",
-    "email": "avvarma31@gmail.com",
+    "name": "Abhinav",
+    "email": "abhinavsai.janipireddy@gmail.com",
     "rollno": "22071A1201",
     "phone": "637382622821",
     "gender": "male",
@@ -74,7 +74,11 @@ Content-Type: application/json
     "caste": "Peraka",
     "religion": "Muslim",
     "parentName": "Allam Nagaraju",
-    "parentPhone": "0987654321"
+    "parentPhone": "0987654321",
+    "hasPhoto": "false",
+    "profilePhoto":"",
+    "todos":[],
+    "classId": "ITA1"
 }
 
 ### coordinator registration through admin api
@@ -122,7 +126,7 @@ GET http://localhost:4000/admin-api/student/22071A1227
 ### search for a coordinator by admin
 GET http://localhost:4000/admin-api/coord/22071A1227
 
-###
+### making an announcement
 
 POST http://localhost:4000/coord-api/announce
 Content-Type: application/json
@@ -134,16 +138,51 @@ Content-Type: application/json
     "creator":"MS. saraswathi"
 }
 
-###
+### seeing the announcements
 
 GET http://localhost:4000/student-api/announce
 
-###
+### list of coords
 
 GET http://localhost:4000/admin-api/coords
 
-###
+### list of students
 
 GET http://localhost:4000/admin-api/students
 
-###
+### updating the student by adding photo and changing hasPhoto prop to true.
+
+PUT http://localhost:4000/student-api/profile-photo
+Content-Type: application/json
+
+{
+    "name": "Vashta",
+    "email": "avvarma31@gmail.com",
+    "rollno": "22071A1201",
+    "phone": "637382622821",
+    "gender": "male",
+    "dob": "2004-10-21",
+    "address": "Ameerpet",
+    "course": "IT",
+    "section": "A",
+    "year": "2022",
+    "caste": "Peraka",
+    "religion": "Muslim",
+    "parentName": "Allam Nagaraju",
+    "parentPhone": "0987654321",
+    "hasPhoto": "true",
+    "profilePhoto":"ashbduabhdsiahbdiadasjadnaskjdaskasndkandksjdadsdasdasidunaidnaiduaidubd"
+}
+
+### delete todo by student
+PUT http://localhost:4000/student-api/todo/delete/abhinavsai.janipireddy@gmail.com
+Content-Type: application/json
+
+{
+    "todoId": "vXHphPU_vWIsFgHqN9m_X"
+}
+
+### get class details
+GET http://localhost:4000/student-api/classInfo/ITA1
+
+

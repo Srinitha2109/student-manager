@@ -1,20 +1,19 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import './AddAnnouncements.css'
+import axios from 'axios';
 
 function AddAnnouncements() {
   let {register, handleSubmit} = useForm();
 
-  function handleFormSubmit(data) {
-    const currentDate = new Date();
-    const formattedDate = currentDate.toISOString();
-    const announcementData = {
-        title: data.title,
-        content: data.content,
-        date: formattedDate,
-        username: "srinitha"
-    };
-    console.log(announcementData);
+  async function handleFormSubmit(data) {    
+    data.date = new Date().toLocaleString('en-GB',{timeZone:'Asia/Kolkata', hour12:false});
+    data.username = "srinitha";
+    let res = await axios.post('http://localhost:4000/admin-api/announce', data)
+    if(res.data.message === "Announcement added"){
+      console.log("Announcement added");
+    }
+    console.log(data);
   }
   return (
     <div className='me-2'>

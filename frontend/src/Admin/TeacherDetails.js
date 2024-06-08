@@ -3,10 +3,21 @@ import './TeacherDetails.css'
 import teacher from '../Assets/teacher.jpg';
 import Box from '@mui/material/Box';
 import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function TeacherDetails() {
 
-    const {state} = useLocation();
+    let {currentUser, userType} = useSelector(state => state.allUserLoginReducer)
+    let user;
+    let {state} = useLocation();
+    if(userType === "admin"){
+        user = state;
+    }
+    else{
+        user = currentUser;
+    }
+
+    
     
         // const coord = {
         //     name: "abhinav",
@@ -32,8 +43,8 @@ function TeacherDetails() {
                     <img className='img mx-auto' src={teacher} alt="" />
                 </div>
                 <div className='mt-3'>
-                    <h4 className='text-center'>{state.name.toUpperCase()}</h4>
-                    <h5 className='text-center'>{state.designation}</h5>
+                    <h4 className='text-center'>{user.name.toUpperCase()}</h4>
+                    <h5 className='text-center'>{user.designation}</h5>
                 </div>
             </div>
             <div className='p-2 bg-white '>
@@ -41,34 +52,34 @@ function TeacherDetails() {
                     <tbody>
                     <tr>
                         <td>Roll No:</td>
-                        <td>{state.rollno}</td>
+                        <td>{user.rollno}</td>
                     </tr>
                     <tr>
                         <td>Email:</td>
-                        <td>{state.email}</td>
+                        <td>{user.email}</td>
                     </tr>
                     <tr>
                         <td>Phone:</td>
-                        <td>{state.phone}</td>
+                        <td>{user.phone}</td>
                     </tr>
                     <tr>
                         <td>Date of birth:</td>
-                        <td>{state.dob}</td>
+                        <td>{user.dob}</td>
                     </tr>
                     <tr>
                         <td>Qualification:</td>
-                        <td>{state.qualification}</td>
+                        <td>{user.qualification}</td>
                     </tr>
                     <tr>
                         <td>Gender:</td>
-                        <td>{state.gender}</td>
+                        <td>{user.gender}</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
         <div className='p-2 bg-white mt-2'>
-            <p className='mb-0'>Address: {state.address}</p>
+            <p className='mb-0'>Address: {user.address}</p>
         </div>
     </div>
     </>

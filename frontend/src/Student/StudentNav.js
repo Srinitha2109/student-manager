@@ -51,8 +51,9 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-end',
-  padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
+  padding :0,
+  margin:0,
 }));
 
 const AppBar = styled(MuiAppBar, {
@@ -154,7 +155,7 @@ function StudentNav() {
             </ListItemButton>
           </ListItem>
 
-          <ListItem disablePadding sx={{ display: 'block' }}>
+          {/* <ListItem disablePadding sx={{ display: 'block' }}>
             <ListItemButton
               component={Link}
               to="assignments"
@@ -175,9 +176,9 @@ function StudentNav() {
               </ListItemIcon>
               <ListItemText primary="Assignments" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
-          </ListItem>
+          </ListItem> */}
 
-          <ListItem disablePadding sx={{ display: 'block' }}>
+          {/* <ListItem disablePadding sx={{ display: 'block' }}>
             <ListItemButton
               component={Link}
               to="courses"
@@ -198,9 +199,9 @@ function StudentNav() {
               </ListItemIcon>
               <ListItemText primary="Student Courses" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
-          </ListItem>
+          </ListItem> */}
 
-          <ListItem disablePadding sx={{ display: 'block' }}>
+          {/* <ListItem disablePadding sx={{ display: 'block' }}>
             <ListItemButton
               component={Link}
               to="attendance"
@@ -221,7 +222,7 @@ function StudentNav() {
               </ListItemIcon>
               <ListItemText primary="Attendance" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
-          </ListItem>
+          </ListItem> */}
 
           <ListItem disablePadding sx={{ display: 'block' }}>
             <ListItemButton
@@ -246,7 +247,7 @@ function StudentNav() {
             </ListItemButton>
           </ListItem>
 
-          <ListItem disablePadding sx={{ display: 'block' }}>
+          {/* <ListItem disablePadding sx={{ display: 'block' }}>
             <ListItemButton
               component={Link}
               to="score"
@@ -267,7 +268,55 @@ function StudentNav() {
               </ListItemIcon>
               <ListItemText primary="Score" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
+          </ListItem> */}
+
+<ListItem disablePadding sx={{ display: 'block' }}>
+            <ListItemButton
+              component={Link}
+              to="class"
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center',
+                }}
+              >
+                <CreditScoreIcon />
+              </ListItemIcon>
+              <ListItemText primary="Class" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
           </ListItem>
+
+
+          <ListItem disablePadding sx={{ display: 'block' }}>
+            <ListItemButton
+              component={Link}
+              to="todo"
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center',
+                }}
+              >
+                <CreditScoreIcon />
+              </ListItemIcon>
+              <ListItemText primary="To-do" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+
 
           <ListItem disablePadding sx={{ display: 'block' }}>
             <ListItemButton
@@ -299,8 +348,8 @@ function StudentNav() {
         </List>
         <Divider />
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
+      <Box component="main" sx={{ flexGrow: 1, padding: '0 !important',m:0}}>   
+         <DrawerHeader />
       </Box>
     </Box>
   )

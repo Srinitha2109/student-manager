@@ -1,0 +1,87 @@
+/* body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  } */
+  
+  .todo-container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .card input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    flex-grow: 1;
+  }
+  
+  .card button {
+    padding: 10px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .card button:hover {
+    background-color: #218838;
+  }
+  
+  .task-list {
+    margin-top: 20px;
+  }
+  
+  .task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .task-item:last-child {
+    border-bottom: none;
+  }
+  
+  .icon {
+    cursor: pointer;
+  }
+  
+  @media (max-width: 576px) {
+    .todo-container {
+      padding: 10px;
+    }
+  
+    .card {
+      padding: 10px;
+    }
+  
+    .task-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .task-item .icon {
+      align-self: flex-end;
+      margin-top: 10px;
+    }
+  }

@@ -13,6 +13,7 @@ adminApp.use((req,res,next)=>{
     coordCollection = req.app.get('coordCollection');
     adminCollection = req.app.get('adminCollection');
     announcementCollection = req.app.get('announcementCollection');
+    classCollection = req.app.get('classCollection');
     next();
 })
 
@@ -136,6 +137,21 @@ adminApp.get('/students',expressAsyncHandler(async(req,res)=>{
 adminApp.get('/coords',expressAsyncHandler(async(req,res)=>{
     let dbCoordinators = await coordCollection.find().toArray();
     res.send({message:'Coordinators found',payload:dbCoordinators})
+}))
+
+//create class
+adminApp.post('/class',expressAsyncHandler(async(req,res)=>{
+    let body = req.body;
+    let result = await classCollection.findOne({classId:body.classId});
+    //console.log(result)
+    if(result===null){
+        await classCollection.insertOne(body);
+        res.send({message:'Class created'})
+    }
+    else{
+        res.send({message:'Class already exists'})
+    }
+    
 }))
 
 module.exports = adminApp;

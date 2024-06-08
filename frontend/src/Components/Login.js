@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {useForm} from 'react-hook-form'
 import './Login.css'
 import admin from '../Assets/admin.jpg'
@@ -8,6 +8,8 @@ import book from '../Assets/book.jpg'
 import {useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { userLoginThunk } from '../Redux/Slices/userLoginSlice'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 
 function Login() {
@@ -15,6 +17,13 @@ function Login() {
   let{register,handleSubmit,formState:{errors}} = useForm();
   let dispatch = useDispatch();
   let {loginStatus,currentUser, userType} = useSelector(state => state.allUserLoginReducer)
+
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleSubmitButton = (data) => {
     console.log(data);
@@ -90,10 +99,15 @@ function Login() {
           </div>
         
         <div className='mb-3'>
-        <label htmlFor=" password" className='form-label'>Password</label>
-          <input type='password' id="password" className='form-control'  {...register("password",{required:true})}></input>
-          {errors.password?.type==='required' && <p className='text-danger'>please enter password</p>}
-        </div>
+            <label htmlFor=" password" className='form-label'>Password</label>
+          <div className="password-input">
+            <input type={showPassword ? 'text' : 'password'} id="password" className='form-control' {...register("password", { required: true })}></input>
+            <button type="button" onClick={togglePasswordVisibility} className="password-toggle-button">
+              <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+            </button>
+          </div>
+          {errors.password?.type === 'required' && <p className='text-danger'>please enter password</p>}
+          </div>
   
         <button className='btn btn-primary mt-2 w-25 d-block m-auto'>Login</button>
         </form>

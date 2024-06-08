@@ -1,8 +1,9 @@
 import React from 'react'
+import StudentDetails from '../Admin/StudentDetails'
 
 function StudentProfile() {
   return (
-    <div>StudentProfile</div>
+    <StudentDetails/>
   )
 }
 

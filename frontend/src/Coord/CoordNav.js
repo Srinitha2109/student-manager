@@ -50,8 +50,9 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-end',
-  padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
+  padding :0,
+  margin:0,
 }));
 
 const AppBar = styled(MuiAppBar, {
@@ -212,7 +213,7 @@ function CoordNav() {
         </List>
         <Divider />
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, padding: '0 !important',m:0}}>     
         <DrawerHeader />
       </Box>
     </Box>

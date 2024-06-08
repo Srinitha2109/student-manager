@@ -2,12 +2,16 @@ const exp = require('express')
 const app = exp();
 require('dotenv').config();
 const path = require('path');
+const cors = require('cors');
 
 //Provide the react build to the server
 app.use(exp.static(path.join(__dirname,'../frontend/build')));
 
 //To parse the body of req
 app.use(exp.json());
+
+//For adding images
+app.use(cors());
 
 //Importing the APIs to server
 const coordApp = require('./APIs/coord-api')
@@ -27,11 +31,13 @@ mongoClint.connect(process.env.URL)
     const studentCollection = db.collection('studentCollection');
     const adminCollection = db.collection('adminCollection');
     const announcementCollection = db.collection('announcementCollection');
+    const classCollection = db.collection('classCollection');
     //Setting collection object to app to make it available to other APIs
     app.set('coordCollection',coordCollection);
     app.set('studentCollection',studentCollection);
     app.set('adminCollection',adminCollection);
     app.set('announcementCollection',announcementCollection);
+    app.set('classCollection',classCollection);
     console.log('Connected to db');
 })
 .catch(err=>{
@@ -68,6 +74,9 @@ app.listen(process.env.PORT,()=>{
 // make protected routes
 // connect frontend and backend  -- done
 // implement middleware to prevent refresh -- done
+// change profile pic of students -- done
+//implement todo list for students -- done
+//new students and teachers doesnt have the property of class id
 
 //teacher password - tfrN0VqQ5/
 //student password - /Oh?fWnXII

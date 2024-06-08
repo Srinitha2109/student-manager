@@ -15,6 +15,11 @@ import TeachersList from './Admin/TeachersList';
 import Courses from './Admin/Courses';
 import TeacherDetails from './Admin/TeacherDetails';
 import StudentDetails from './Admin/StudentDetails';
+import RegisterCoord from './Admin/RegisterCoord';
+import RegisterStudent from './Admin/RegisterStudent';
+import StudentToDo from './Student/StudentToDo';
+import CreateClass from './Admin/CreateClass';
+import Schedule from './Student/Schedule';
 
 
 function App() {
@@ -49,6 +54,14 @@ function App() {
         {
           path:'announce',
           element:<StudentAnnoucements/>,
+        },
+        {
+          path:'todo',
+          element:<StudentToDo/>,
+        },
+        {
+          path:'class',
+          element:<Schedule/>
         }
       ]
     },
@@ -83,6 +96,18 @@ function App() {
         {
           path:'students/student-details/:id',
           element:<StudentDetails/>
+        },
+        {
+          path:'new-coord',
+          element:<RegisterCoord/>
+        },
+        {
+          path:'new-student',
+          element:<RegisterStudent/>
+        },
+        {
+          path:'create-class',
+          element:<CreateClass/>
         }
       ]
     }
